@@ -27,7 +27,7 @@ A custom React hook for adding event listeners to one or multiple elements with 
 
 
 ## Installation
-This is a standalone hook. You can simply copy and use it from this [gist]() in your React project.
+This is a standalone hook. You can simply copy and use it from this [gist](https://gist.github.com/mmedoo/bdbacf5c8f275c5fac0f037d814a391e) in your React project.
 
 **Or** you can install it using `npm`:
 ```ps
