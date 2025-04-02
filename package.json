@@ -1,0 +1,28 @@
+{
+	"name": "uselistener",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsup src/index.ts"
+	},
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		}
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"description": "",
+	"peerDependencies": {
+		"react": "^16.8.0"
+	},
+	"types": "dist/index.d.ts",
+	"devDependencies": {
+		"@types/react": "^19.0.10",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.2"
+	}
+}
