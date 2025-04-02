@@ -1,6 +1,19 @@
 {
-	"name": "uselistener",
-	"version": "1.0.0",
+	"name": "use-eventer",
+	"description": "A custom React hook for adding event listeners to one or multiple elements with flexible options.",
+	"version": "1.1.0",
+	"keywords": ["react", "hook", "event", "listener", "custom"],
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=14.0.0"
+	},
+	"dependencies": {
+		"@types/react": "^16.8.0"
+	},
+	"author": "mmedoo <mohaibrat@gmail.com> (https://mmedoo.github.io)",
 	"main": "index.js",
 	"scripts": {
 		"build": "tsup src/index.ts"
@@ -11,18 +24,19 @@
 			"require": "./dist/index.js"
 		}
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"type": "commonjs",
-	"description": "",
 	"peerDependencies": {
 		"react": "^16.8.0"
 	},
 	"types": "dist/index.d.ts",
 	"devDependencies": {
-		"@types/react": "^19.0.10",
-		"tsup": "^8.4.0",
-		"typescript": "^5.8.2"
-	}
+		"@types/react": "^16.8.0",
+		"tsup": "^8.4.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mmedoo/use-eventer.git"
+	},
+	"homepage": "https://github.com/mmedoo/use-eventer"
 }

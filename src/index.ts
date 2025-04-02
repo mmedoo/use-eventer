@@ -1,6 +1,5 @@
 import { useEffect, RefObject } from "react";
 
-
 type HookOptions = {
 	/**
 	 * If `true`, each event is applied to a single corresponding element (one-to-one mapping).
@@ -20,6 +19,8 @@ type EventListenerCallback = (event?: Event) => void;
 /**
  * A custom React hook to add event listeners to one or multiple elements.
  *
+ * @template T
+ * The type of the HTML element to which the event listener is attached.
  * @param {RefObject<T> | RefObject<T>[]} ref
  * A single or array of refs pointing to elements.
  * @param {string | string[]} event
