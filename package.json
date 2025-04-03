@@ -1,7 +1,7 @@
 {
 	"name": "use-eventer",
 	"description": "A custom React hook for adding event listeners to one or multiple elements with flexible options.",
-	"version": "1.1.0",
+	"version": "1.1.5",
 	"keywords": [
 		"react",
 		"hook",
