@@ -7,8 +7,6 @@ import { useEffect } from "react";
  * A single or array of refs pointing to elements.
  * @param {string | string[]} event
  * The event type(s) to listen for.
- * @param {() => (event?: Event) => void} callback
- * A function returning the event handler.
  * @param {any[]} [dependencies=[]]
  * Dependencies for the `useEffect` hook. (default: [])
  * @param {Object} [options={}]

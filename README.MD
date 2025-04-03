@@ -31,7 +31,7 @@ This is a standalone hook. You can simply copy and use it from this [gist](https
 
 **Or** you can install it using `npm`:
 ```ps
-npm i use-listener
+npm i use-eventer
 ```
 
 
