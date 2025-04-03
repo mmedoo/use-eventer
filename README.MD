@@ -27,7 +27,7 @@ A custom React hook for adding event listeners to one or multiple elements with 
 
 
 ## Installation
-This is a standalone hook. You can simply copy and use it from this [gist](https://gist.github.com/mmedoo/bdbacf5c8f275c5fac0f037d814a391e) in your React project.
+This is a standalone hook. You can simply copy and use it from this <a href="https://gist.github.com/mmedoo/bdbacf5c8f275c5fac0f037d814a391e" target="_blank">gist</a> in your React project.
 
 **Or** you can install it using `npm`:
 ```ps
@@ -46,12 +46,12 @@ npm i use-eventer
 ### Basic Example
 ```jsx
 import { useRef } from "react";
-import useListener from "./useListener";
+import useEventer from "./useEventer";
 
 const MyComponent = () => {
   const buttonRef = useRef(null);
 
-  useListener(buttonRef, "click", () => () => {
+  useEventer(buttonRef, "click", () => () => {
     console.log("Button clicked!");
   });
 
@@ -70,7 +70,7 @@ Here, it simply saved the cleanup code.
 ```jsx
 const divRef = useRef(null);
 
-useListener(divRef, "click", () => (event) => {
+useEventer(divRef, "click", () => (event) => {
 	console.log(`Event triggered: ${event?.type}`);
 });
 ```
@@ -79,7 +79,7 @@ useListener(divRef, "click", () => (event) => {
 ```jsx
 const divRef = useRef(null);
 
-useListener(divRef, ["mouseenter", "mouseleave"], () => (event) => {
+useEventer(divRef, ["mouseenter", "mouseleave"], () => (event) => {
 	console.log(`Event triggered: ${event?.type}`);
 });
 ```
@@ -87,7 +87,7 @@ useListener(divRef, ["mouseenter", "mouseleave"], () => (event) => {
 <!-- ### Multiple Elements, One-to-One Mapping -->
 ### Multiple Elements and Events
 
-Before using `useListener`, you might handle multiple elements and events like this:
+#### Before using `useEventer`, you might handle multiple elements and events like this:
 
 ```jsx
 const div1 = useRef(null);
@@ -114,13 +114,13 @@ useEffect(() => {
 }, []);
 ```
 
-With `useListener`, this can be simplified:
+#### With `useEventer`, this can be simplified:
 
 ```jsx
 const div1 = useRef(null);
 const div2 = useRef(null);
 
-useListener([div1, div2], ["click", "mouseenter"], () => () => {
+useEventer([div1, div2], ["click", "mouseenter"], () => () => {
 	console.log("Event triggered!");
 }, []);
 ```
@@ -130,18 +130,43 @@ By default, `oneToOne` is set to `false`, meaning each `div` will have both even
 
 ### Specific Case
 Sometimes, you may need to add some logic (and maybe with dependencies) before event attachment. You can add it in the callback passed, and then return the event handler.
+
+#### Before Using `useEventer`
 ```jsx
 const divRef = useRef(null);
 
-useListener(divRef, "click", () => {
-	console.log("color changed")
-	return (event) => {
-		console.log(`Event triggered: ${event?.type}`);
-	}
+useEffect(() => {
+	console.log("color changed");
+
+	const eventHandler = (event) => {
+		console.log(`color is: ${color}`);
+	};
+
+	const element = divRef.current;
+	element?.addEventListener("click", eventHandler);
+
+	return () => {
+		element?.removeEventListener("click", eventHandler);
+	};
 }, [color]);
 ```
 
-Here, it works exactly like `useEffect`, but you can add your event listeners with shared dependencies to save lines of code. 
+#### With `useEventer`
+```jsx
+const divRef = useRef(null);
+
+useEventer(divRef, "click", () => {
+	console.log("color changed");
+
+	return (event) => {
+		console.log(`color is: ${color}`);
+	};
+}, [color]);
+```
+
+Here, Both work exactly the same.
+
+`useEventer` is simply a `useEffect`, but you can add your event listeners with shared dependencies to save lines of code. 
 
 ## Cleanup Behavior
 - The hook automatically removes event listeners when the component unmounts.
@@ -154,7 +179,7 @@ Here, it works exactly like `useEffect`, but you can add your event listeners wi
 
 ## API
 
-### `useListener(ref, event, callback, dependencies?, options?)`
+### `useEventer(ref, event, callback, dependencies?, options?)`
 
 | Parameter       | Type                                             | Description |
 | -------------- | ----------------------------------------------- | ----------- |

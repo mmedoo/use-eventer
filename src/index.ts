@@ -69,10 +69,12 @@ export default function useListener<T extends HTMLElement>(
 
 		const controller = new AbortController();
 
+		const nodes = refs.map((rf) => rf.current);
+
 		if (oneToOne) {
-			for (let i = 0; i < refs.length; i++) {
+			for (let i = 0; i < nodes.length; i++) {
 				if (callHandlerOnEach) handler();
-				refs[i]?.current?.addEventListener(events[i], handler, {
+				nodes[i]?.addEventListener(events[i], handler, {
 					signal: controller.signal,
 					...listenerOptions,
 				});
@@ -80,10 +82,10 @@ export default function useListener<T extends HTMLElement>(
 			return () => controller.abort();
 		}
 
-		for (let rf of refs) {
+		for (let node of nodes) {
 			for (let evt of events) {
 				if (callHandlerOnEach) handler();
-				rf?.current?.addEventListener(evt, handler, {
+				node?.addEventListener(evt, handler, {
 					signal: controller.signal,
 					...listenerOptions,
 				});
@@ -91,22 +93,24 @@ export default function useListener<T extends HTMLElement>(
 		}
 
 		return () => {
-			if (listenerOptions.signal) {
-				if (oneToOne) {
-					for (let i = 0; i < refs.length; i++) {
-						refs[i]?.current?.removeEventListener(events[i], handler);
-					}
-				}
-
-				else for (let rf of refs) {
-					for (let evt of events) {
-						rf?.current?.removeEventListener(evt, handler);
-					}
-				}
-			} else {
+			if (!listenerOptions.signal) {
 				controller.abort();
+				return;
+			}
+			
+			if (oneToOne) {
+				for (let i = 0; i < nodes.length; i++) {
+					nodes[i]?.removeEventListener(events[i], handler);
+				}
+				return;
+			}
+
+			for (let node of nodes) {
+				for (let evt of events) {
+					node?.removeEventListener(evt, handler);
+				}
 			}
 		};
-		
+
 	}, dependencies);
 }
