@@ -40,7 +40,7 @@ type EventListenerCallback = (event?: Event) => void;
  * });
  * ```
  */
-export default function useListener<T extends HTMLElement>(
+export default function useEventer<T extends HTMLElement>(
 	ref: RefObject<T> | RefObject<T>[],
 	event: string | string[],
 	callback: () => EventListenerCallback,

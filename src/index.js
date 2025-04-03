@@ -28,7 +28,7 @@ import { useEffect } from "react";
  * });
  * ```
  */
-export default function useListener(
+export default function useEventer(
 	ref,
 	event,
 	callback,

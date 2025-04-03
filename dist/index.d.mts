@@ -38,6 +38,6 @@ type EventListenerCallback = (event?: Event) => void;
  * });
  * ```
  */
-declare function useListener<T extends HTMLElement>(ref: RefObject<T> | RefObject<T>[], event: string | string[], callback: () => EventListenerCallback, dependencies?: any[], options?: HookOptions): void;
+declare function useEventer<T extends HTMLElement>(ref: RefObject<T> | RefObject<T>[], event: string | string[], callback: () => EventListenerCallback, dependencies?: any[], options?: HookOptions): void;
 
-export { useListener as default };
+export { useEventer as default };
