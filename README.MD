@@ -7,16 +7,16 @@ A custom React hook for adding event listeners to one or multiple elements with 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-	- [Basic Example](#basic-example)
-	- [Advanced Showcases](#advanced-showcases)
-		- [Single Event and Element](#single-event-and-element)
-		- [Multiple Events on a Single Element](#multiple-events-on-a-single-element)
-		- [Multiple Elements and Events](#multiple-elements-and-events)
-		- [Specific Case](#specific-case)
+    - [Basic Example](#basic-example)
+    - [Advanced Showcases](#advanced-showcases)
+        - [Single Event and Element](#single-event-and-element)
+        - [Multiple Events on a Single Element](#multiple-events-on-a-single-element)
+        - [Multiple Elements and Events](#multiple-elements-and-events)
+        - [Specific Case](#specific-case)
 - [Cleanup Behavior](#cleanup-behavior)
 - [Error Handling](#error-handling)
 - [API](#api)
-	- [HookOptions](#hookoptions)
+    - [HookOptions](#hookoptions)
 - [Notes](#notes)
 
 ## Features
@@ -49,13 +49,13 @@ import { useRef } from "react";
 import useEventer from "./useEventer";
 
 const MyComponent = () => {
-  const buttonRef = useRef(null);
+    const buttonRef = useRef(null);
 
-  useEventer(buttonRef, "click", () => () => {
-    console.log("Button clicked!");
-  });
+    useEventer(buttonRef, "click", () => () => {
+        console.log("Button clicked!");
+    });
 
-  return <button ref={buttonRef}>Click Me</button>;
+    return <button ref={buttonRef}>Click Me</button>;
 };
 ```
 
@@ -71,7 +71,7 @@ Here, it simply saved the cleanup code.
 const divRef = useRef(null);
 
 useEventer(divRef, "click", () => (event) => {
-	console.log(`Event triggered: ${event?.type}`);
+    console.log(`Event triggered: ${event?.type}`);
 });
 ```
 
@@ -80,7 +80,7 @@ useEventer(divRef, "click", () => (event) => {
 const divRef = useRef(null);
 
 useEventer(divRef, ["mouseenter", "mouseleave"], () => (event) => {
-	console.log(`Event triggered: ${event?.type}`);
+    console.log(`Event triggered: ${event?.type}`);
 });
 ```
 
@@ -94,23 +94,23 @@ const div1 = useRef(null);
 const div2 = useRef(null);
 
 useEffect(() => {
-	const eventHandler = () => console.log("Event triggered!");
+    const eventHandler = () => console.log("Event triggered!");
 
-	const controller = new AbortController();
-	const { signal } = controller;
-	
-	const element1 = div1.current;
-	const element2 = div2.current;
+    const controller = new AbortController();
+    const { signal } = controller;
+    
+    const element1 = div1.current;
+    const element2 = div2.current;
 
-	element1?.addEventListener("click", eventHandler, { signal });
-	element1?.addEventListener("mouseenter", handleMouseEnter, { signal });
+    element1?.addEventListener("click", eventHandler, { signal });
+    element1?.addEventListener("mouseenter", handleMouseEnter, { signal });
 
-	element2?.addEventListener("click", eventHandler, { signal });
-	element2?.addEventListener("mouseenter", handleMouseEnter, { signal });
+    element2?.addEventListener("click", eventHandler, { signal });
+    element2?.addEventListener("mouseenter", handleMouseEnter, { signal });
 
-	return () => {
-		controller.abort();
-	};
+    return () => {
+        controller.abort();
+    };
 }, []);
 ```
 
@@ -121,7 +121,7 @@ const div1 = useRef(null);
 const div2 = useRef(null);
 
 useEventer([div1, div2], ["click", "mouseenter"], () => () => {
-	console.log("Event triggered!");
+    console.log("Event triggered!");
 }, []);
 ```
 
@@ -136,18 +136,18 @@ Sometimes, you may need to add some logic (and maybe with dependencies) before e
 const divRef = useRef(null);
 
 useEffect(() => {
-	console.log("color changed");
+    console.log("color changed");
 
-	const eventHandler = (event) => {
-		console.log(`color is: ${color}`);
-	};
+    const eventHandler = (event) => {
+        console.log(`color is: ${color}`);
+    };
 
-	const element = divRef.current;
-	element?.addEventListener("click", eventHandler);
+    const element = divRef.current;
+    element?.addEventListener("click", eventHandler);
 
-	return () => {
-		element?.removeEventListener("click", eventHandler);
-	};
+    return () => {
+        element?.removeEventListener("click", eventHandler);
+    };
 }, [color]);
 ```
 
@@ -156,11 +156,11 @@ useEffect(() => {
 const divRef = useRef(null);
 
 useEventer(divRef, "click", () => {
-	console.log("color changed");
+    console.log("color changed");
 
-	return (event) => {
-		console.log(`color is: ${color}`);
-	};
+    return (event) => {
+        console.log(`color is: ${color}`);
+    };
 }, [color]);
 ```
 
