@@ -175,7 +175,7 @@ Here, Both work exactly the same.
 - You can pass a `signal` to the event listener for your custom use, but in this case, cleanup function will not use the `AbortController`. Instead, it will manually remove all listeners.
 
 ## Error Handling
-- Throws an error if `oneToOne` is `true` but the number of refs and events don't match.
+Throws an error if `oneToOne` is `true` but the number of refs and events don't match.
 
 ## API
 

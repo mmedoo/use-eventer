@@ -67,10 +67,9 @@ export default function useEventer(
 					...listenerOptions,
 				});
 			}
-			return () => controller.abort();
 		}
 
-		for (let node of nodes) {
+		else for (let node of nodes) {
 			for (let evt of events) {
 				if (callHandlerOnEach) handler();
 				node?.addEventListener(evt, handler, {
