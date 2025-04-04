@@ -53,7 +53,7 @@ const MyComponent = () => {
 
     useEventer(buttonRef, "click", () => () => {
         console.log("Button clicked!");
-    });
+    }, []);
 
     return <button ref={buttonRef}>Click Me</button>;
 };
@@ -72,7 +72,7 @@ const divRef = useRef(null);
 
 useEventer(divRef, "click", () => (event) => {
     console.log(`Event triggered: ${event?.type}`);
-});
+}, []);
 ```
 
 ### Multiple Events on a Single Element
@@ -81,7 +81,7 @@ const divRef = useRef(null);
 
 useEventer(divRef, ["mouseenter", "mouseleave"], () => (event) => {
     console.log(`Event triggered: ${event?.type}`);
-});
+}, []);
 ```
 
 <!-- ### Multiple Elements, One-to-One Mapping -->
@@ -103,10 +103,10 @@ useEffect(() => {
     const element2 = div2.current;
 
     element1?.addEventListener("click", eventHandler, { signal });
-    element1?.addEventListener("mouseenter", handleMouseEnter, { signal });
+    element1?.addEventListener("mouseenter", eventHandler, { signal });
 
     element2?.addEventListener("click", eventHandler, { signal });
-    element2?.addEventListener("mouseenter", handleMouseEnter, { signal });
+    element2?.addEventListener("mouseenter", eventHandler, { signal });
 
     return () => {
         controller.abort();
@@ -164,7 +164,7 @@ useEventer(divRef, "click", () => {
 }, [color]);
 ```
 
-Here, Both work exactly the same.
+#### Here, Both work exactly the same.
 
 `useEventer` is simply a `useEffect`, but you can add your event listeners with shared dependencies to save lines of code. 
 
