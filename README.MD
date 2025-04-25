@@ -97,16 +97,15 @@ useEffect(() => {
     const eventHandler = () => console.log("Event triggered!");
 
     const controller = new AbortController();
-    const { signal } = controller;
     
     const element1 = div1.current;
     const element2 = div2.current;
 
-    element1?.addEventListener("click", eventHandler, { signal });
-    element1?.addEventListener("mouseenter", eventHandler, { signal });
+    element1?.addEventListener("click", eventHandler, controller);
+    element1?.addEventListener("mouseenter", eventHandler, controller);
 
-    element2?.addEventListener("click", eventHandler, { signal });
-    element2?.addEventListener("mouseenter", eventHandler, { signal });
+    element2?.addEventListener("click", eventHandler, controller);
+    element2?.addEventListener("mouseenter", eventHandler, controller);
 
     return () => {
         controller.abort();
