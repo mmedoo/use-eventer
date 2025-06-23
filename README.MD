@@ -94,7 +94,9 @@ const divRef1 = useRef(null);
 const divRef2 = useRef(null);
 
 useEffect(() => {
-    const eventHandler = () => console.log("Event triggered!");
+    const eventHandler = () => {
+        console.log("Event triggered!");
+    } 
 
     const controller = new AbortController();
     
