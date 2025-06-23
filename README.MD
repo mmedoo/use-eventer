@@ -90,16 +90,16 @@ useEventer(divRef, ["mouseenter", "mouseleave"], () => (event) => {
 #### Before using `useEventer`, you might handle multiple elements and events like this:
 
 ```jsx
-const div1 = useRef(null);
-const div2 = useRef(null);
+const divRef1 = useRef(null);
+const divRef2 = useRef(null);
 
 useEffect(() => {
     const eventHandler = () => console.log("Event triggered!");
 
     const controller = new AbortController();
     
-    const element1 = div1.current;
-    const element2 = div2.current;
+    const element1 = divRef1.current;
+    const element2 = divRef2.current;
 
     element1?.addEventListener("click", eventHandler, controller);
     element1?.addEventListener("mouseenter", eventHandler, controller);
@@ -116,10 +116,10 @@ useEffect(() => {
 #### With `useEventer`, this can be simplified:
 
 ```jsx
-const div1 = useRef(null);
-const div2 = useRef(null);
+const divRef1 = useRef(null);
+const divRef2 = useRef(null);
 
-useEventer([div1, div2], ["click", "mouseenter"], () => () => {
+useEventer([divRef1, divRef2], ["click", "mouseenter"], () => () => {
     console.log("Event triggered!");
 }, []);
 ```
