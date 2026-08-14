@@ -17,9 +17,6 @@
 	"engines": {
 		"node": ">=14.0.0"
 	},
-	"dependencies": {
-		"@types/react": "^16.8.0"
-	},
 	"author": "mmedoo <mohaibrat@gmail.com> (https://mmedoo.github.io)",
 	"main": "index.js",
 	"scripts": {
@@ -34,13 +31,13 @@
 	"license": "MIT",
 	"type": "commonjs",
 	"peerDependencies": {
-		"react": "^16.8.0"
+		"react": "16.8.0"
 	},
 	"types": "dist/index.d.ts",
 	"devDependencies": {
-		"@types/react": "^16.8.0",
-		"tsup": "^8.4.0",
-		"typescript": "^7.0.2"
+		"@types/react": "^19.2.18",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.3"
 	},
 	"repository": {
 		"type": "git",
