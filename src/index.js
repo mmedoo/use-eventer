@@ -99,5 +99,5 @@ export default function useEventer(
 			}
 		};
 
-	}, dependencies);
+	}, [callback, ...dependencies]);
 }
