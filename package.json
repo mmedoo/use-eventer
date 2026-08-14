@@ -39,7 +39,8 @@
 	"types": "dist/index.d.ts",
 	"devDependencies": {
 		"@types/react": "^16.8.0",
-		"tsup": "^8.4.0"
+		"tsup": "^8.4.0",
+		"typescript": "^7.0.2"
 	},
 	"repository": {
 		"type": "git",
