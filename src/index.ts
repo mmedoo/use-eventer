@@ -111,5 +111,5 @@ export default function useEventer<T extends HTMLElement>(
 			}
 		};
 
-	}, dependencies);
+	}, [callback, ...dependencies]);
 }
