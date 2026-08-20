@@ -47,7 +47,7 @@ export default function useEventer(
 
 	if (oneToOne && refs.length !== events.length) {
 		throw new Error(
-			"When oneToOne is set to false, the number of refs and events must be equal."
+			"When oneToOne is set to true, the number of refs and events must be equal."
 		);
 	}
 
